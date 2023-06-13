@@ -17,8 +17,7 @@ public class Game
     {
         var parity = moves.Length % 2;
         var selectedMoves = moves.Where((_, i) => i % 2 != parity).ToHashSet();
-        var won = options.Any(x => x.IsSubsetOf(selectedMoves));
-        if (won)
+        if (options.Any(x => x.IsSubsetOf(selectedMoves)))
         {
             return parity == 0 ? GameState.CircleWon : GameState.CrossWon;
         }
