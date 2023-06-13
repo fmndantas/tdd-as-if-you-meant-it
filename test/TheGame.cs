@@ -28,9 +28,15 @@ public class TheGame
     public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsAnEntireRow(int[] moves)
     {
         var crossMoves = moves.Where((_, i) => i % 2 == 0).ToHashSet();
-        if (crossMoves.Overlaps(new HashSet<int> { 0, 1, 2 }))
+        if (crossMoves.IsSupersetOf(new HashSet<int> { 0, 1, 2 }))
         {
             return GameState.CrossWon;
+        }
+
+        var circleMoves = moves.Where((_, i) => i % 2 == 1).ToHashSet();
+        if (circleMoves.IsSupersetOf(new HashSet<int> { 3, 4, 5 }))
+        {
+            return GameState.CircleWon;
         }
 
         return new Game().State(moves);
