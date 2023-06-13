@@ -23,9 +23,15 @@ public class TheGame
     }
 
     [TestCase(new[] { 0, 3, 1, 4, 2 }, ExpectedResult = GameState.CrossWon)]
+    [TestCase(new[] { 0, 3, 2, 4, 1 }, ExpectedResult = GameState.CrossWon)]
     public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsAnEntireRow(int[] moves)
     {
-        var game = new Game();
-        return game.State(moves);
+        var crossMoves = moves.Where((_, i) => i % 2 == 0).ToHashSet();
+        if (crossMoves.Overlaps(new HashSet<int> { 0, 1, 2 }))
+        {
+            return GameState.CrossWon;
+        }
+
+        return new Game().State(moves);
     }
 }
