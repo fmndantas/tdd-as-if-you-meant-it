@@ -2,18 +2,22 @@ namespace src;
 
 public class Game
 {
-    private readonly List<HashSet<int>> _rows;
+    private readonly List<HashSet<int>> options;
 
     public Game()
     {
-        _rows = new List<HashSet<int>> { new() { 0, 1, 2 }, new() { 3, 4, 5 }, new() { 6, 7, 8 } };
+        options = new List<HashSet<int>>
+        {
+            new() { 0, 1, 2 }, new() { 3, 4, 5 }, new() { 6, 7, 8 },
+            new() { 0, 3, 6 }
+        };
     }
 
     public GameState State(int[] moves)
     {
         var parity = moves.Length % 2;
         var selectedMoves = moves.Where((_, i) => i % 2 != parity).ToHashSet();
-        var won = _rows.Any(x => x.IsSubsetOf(selectedMoves));
+        var won = options.Any(x => x.IsSubsetOf(selectedMoves));
         if (won)
         {
             return parity == 0 ? GameState.CircleWon : GameState.CrossWon;
