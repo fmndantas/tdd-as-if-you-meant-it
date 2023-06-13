@@ -47,9 +47,13 @@ public class TheGame
         return new Game().State(moves);
     }
 
-    [TestCase(new[] { 0, 1, 3, 4, 5, 6 })]
+    [TestCase(new[] { 0, 1, 3, 4, 6, 7 })]
+    [TestCase(new[] { 0, 3, 1, 4, 2, 5 })]
     public void ThrowErrorWhenMoreThanOneWayToWinAreSpotted(int[] moves)
     {
-        Assert.Throws<GameInInvalidState>(() => { new Game().State(moves); });
+        Assert.Throws<GameInInvalidState>(() =>
+        {
+            new Game().State(moves);
+        });
     }
 }

@@ -16,8 +16,16 @@ public class Game
     public GameState State(int[] moves)
     {
         var parity = moves.Length % 2;
-        var selectedMoves = moves.Where((_, i) => i % 2 != parity).ToHashSet();
-        if (_options.Any(x => x.IsSubsetOf(selectedMoves)))
+        var lastPlayerMoves = moves.Where((_, i) => i % 2 != parity).ToHashSet();
+        var currentPlayerMoves = moves.Where((_, i) => i % 2 == parity).ToHashSet();
+        var lastPlayerWinningPositions = _options.Count(x => x.IsSubsetOf(lastPlayerMoves));
+        var currentPlayerWinningPositions = _options.Count(x => x.IsSubsetOf(currentPlayerMoves));
+        if (lastPlayerWinningPositions + currentPlayerWinningPositions > 1)
+        {
+            throw new GameInInvalidState("There are more than one way to win the game");
+        }
+
+        if (lastPlayerWinningPositions == 1)
         {
             return parity == 0 ? GameState.CircleWon : GameState.CrossWon;
         }
