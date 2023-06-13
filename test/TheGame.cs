@@ -3,7 +3,7 @@ namespace test;
 public class TheGame
 {
     [Test]
-    public void GameIsInProgressWithNoMoves()
+    public void AssumesStatusInProgressWhenNoMovesArePerformed()
     {
         Assert.That(State(new int[] { }), Is.EqualTo(GameStatus.InProgress));
     }
