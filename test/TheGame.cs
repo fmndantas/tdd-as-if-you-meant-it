@@ -1,3 +1,5 @@
+using src;
+
 namespace test;
 
 public class TheGame
@@ -5,27 +7,18 @@ public class TheGame
     [Test]
     public void AssumesStatusCrossPlaysWhenNoMovesArePerformed()
     {
-        Assert.That(State(new int[] { }), Is.EqualTo(GameStatus.CrossPlays));
+        var game = new Game();
+        Assert.That(game.State(new int[] { }), Is.EqualTo(GameState.CrossPlays));
     }
 
     [Test]
     public void AlternatesBetweenStatusCrossPlaysAndCirclePlaysAfterEachMoveUntilGameIsFinished()
     {
+        var game = new Game();
         Assert.Multiple(() =>
         {
-            Assert.That(State(new[] { 0 }), Is.EqualTo(GameStatus.CirclePlays));
-            Assert.That(State(new[] { 0, 1 }), Is.EqualTo(GameStatus.CrossPlays));
+            Assert.That(game.State(new[] { 0 }), Is.EqualTo(GameState.CirclePlays));
+            Assert.That(game.State(new[] { 0, 1 }), Is.EqualTo(GameState.CrossPlays));
         });
     }
-
-    private GameStatus State(int[] moves)
-    {
-        return moves.Length % 2 == 0 ? GameStatus.CrossPlays : GameStatus.CirclePlays;
-    }
-}
-
-enum GameStatus
-{
-    CrossPlays,
-    CirclePlays
 }
