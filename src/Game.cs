@@ -6,7 +6,7 @@ public class Game
 
     public Game()
     {
-        _rows = new List<HashSet<int>> { new() { 0, 1, 2 }, new() { 3, 4, 5 } };
+        _rows = new List<HashSet<int>> { new() { 0, 1, 2 }, new() { 3, 4, 5 }, new() { 6, 7, 8 } };
     }
 
     public GameState State(int[] moves)
