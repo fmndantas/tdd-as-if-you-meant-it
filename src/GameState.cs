@@ -5,5 +5,6 @@ public enum GameState
     CrossPlays,
     CirclePlays,
     CrossWon,
-    CircleWon
+    CircleWon,
+    Tied
 }

@@ -41,6 +41,7 @@ public class TheGame
     }
 
     [TestCase(new[] { 0, 1, 2, 4, 3, 5, 8, 6, 7 }, ExpectedResult = GameState.Tied)]
+    [TestCase(new[] { 0, 2, 1, 3, 4, 7, 5, 8, 6 }, ExpectedResult = GameState.Tied)]
     public GameState InformsThatGameIsTiedWhenAllSpotsAreFilledAndNoPlayerHasWon(int[] moves)
     {
         return new Game().State(moves);

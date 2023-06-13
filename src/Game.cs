@@ -22,6 +22,11 @@ public class Game
             return parity == 0 ? GameState.CircleWon : GameState.CrossWon;
         }
 
+        if (moves.Length == 9)
+        {
+            return GameState.Tied;
+        }
+
         return parity == 0 ? GameState.CrossPlays : GameState.CirclePlays;
     }
 }
