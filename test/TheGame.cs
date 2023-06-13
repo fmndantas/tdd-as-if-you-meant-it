@@ -8,8 +8,13 @@ public class TheGame
         Assert.That(State(new int[] { }), Is.EqualTo(GameStatus.InProgress));
     }
 
-    private int State(int[] moves)
+    private GameStatus State(int[] moves)
     {
-        return 0;
+        return GameStatus.InProgress;
     }
+}
+
+enum GameStatus
+{
+    InProgress
 }
