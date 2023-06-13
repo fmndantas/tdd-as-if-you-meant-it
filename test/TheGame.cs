@@ -10,11 +10,11 @@ public class TheGame
 
     private GameStatus State(int[] moves)
     {
-        return GameStatus.InProgress;
+        return GameStatus.XPlays;
     }
 }
 
 enum GameStatus
 {
-    InProgress
+    XPlays
 }
