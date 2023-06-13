@@ -33,6 +33,7 @@ public class TheGame
 
     [TestCase(new[] { 0, 1, 3, 2, 6 }, ExpectedResult = GameState.CrossWon)]
     [TestCase(new[] { 1, 0, 4, 3, 7 }, ExpectedResult = GameState.CrossWon)]
+    [TestCase(new[] { 2, 0, 5, 3, 8 }, ExpectedResult = GameState.CrossWon)]
     [TestCase(new[] { 1, 0, 2, 3, 8, 6 }, ExpectedResult = GameState.CircleWon)]
     public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsAnEntireColumn(int[] moves)
     {
