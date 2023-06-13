@@ -30,4 +30,10 @@ public class TheGame
     {
         return new Game().State(moves);
     }
+
+    [TestCase(new[] { 0, 1, 3, 2, 6, 7 }, ExpectedResult = GameState.CrossWon)]
+    public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsAnEntireColumn(int[] moves)
+    {
+        return new Game().State(moves);
+    }
 }
