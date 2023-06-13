@@ -3,18 +3,18 @@ namespace test;
 public class TheGame
 {
     [Test]
-    public void AssumesStatusXPlaysWhenNoMovesArePerformed()
+    public void AssumesStatusCrossPlaysWhenNoMovesArePerformed()
     {
-        Assert.That(State(new int[] { }), Is.EqualTo(GameStatus.XPlays));
+        Assert.That(State(new int[] { }), Is.EqualTo(GameStatus.CrossPlays));
     }
-
+    
     private GameStatus State(int[] moves)
     {
-        return GameStatus.XPlays;
+        return GameStatus.CrossPlays;
     }
 }
 
 enum GameStatus
 {
-    XPlays
+    CrossPlays
 }
