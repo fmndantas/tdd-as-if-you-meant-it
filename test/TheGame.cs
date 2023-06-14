@@ -41,6 +41,7 @@ public class TheGame
     }
 
     [TestCase(new[] { 0, 6, 8, 7, 4 }, ExpectedResult = GameState.CrossWon)]
+    [TestCase(new[] { 4, 5, 2, 8, 6 }, ExpectedResult = GameState.CrossWon)]
     public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsOneOfTwoDiagonals(int[] moves)
     {
         return new Game().State(moves);
