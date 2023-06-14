@@ -4,7 +4,7 @@ public class Game
 {
     private readonly List<HashSet<int>> _options;
 
-    public Game(int n)
+    public Game(int n, WinnerPatternsGenerator generator)
     {
         _options = new List<HashSet<int>>
         {
