@@ -22,11 +22,12 @@ public class TheGame
         });
     }
 
-    [TestCase(new[] { 0, 3, 1, 4, 2 }, ExpectedResult = GameState.CrossWon)]
-    [TestCase(new[] { 0, 3, 2, 4, 1 }, ExpectedResult = GameState.CrossWon)]
-    [TestCase(new[] { 0, 4, 2, 3, 8, 5 }, ExpectedResult = GameState.CircleWon)]
-    [TestCase(new[] { 0, 8, 1, 6, 3, 7 }, ExpectedResult = GameState.CircleWon)]
-    public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsAnEntireRow(int[] moves)
+    [TestCase(new[] { 0, 3, 1, 4, 2 }, 3, ExpectedResult = GameState.CrossWon)]
+    [TestCase(new[] { 0, 3, 2, 4, 1 }, 3, ExpectedResult = GameState.CrossWon)]
+    [TestCase(new[] { 0, 4, 2, 3, 8, 5 }, 3, ExpectedResult = GameState.CircleWon)]
+    [TestCase(new[] { 0, 8, 1, 6, 3, 7 }, 3, ExpectedResult = GameState.CircleWon)]
+    [TestCase(new[] { 0, 12, 1, 13, 2, 14, 3 }, 4, ExpectedResult = GameState.CrossWon)]
+    public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsAnEntireRow(int[] moves, int n)
     {
         return new Game(3).State(moves);
     }
