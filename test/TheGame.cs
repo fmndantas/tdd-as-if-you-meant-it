@@ -29,15 +29,7 @@ public class TheGame
     [TestCase(new[] { 0, 12, 1, 13, 2, 14, 3 }, 4, ExpectedResult = GameState.CrossWon)]
     public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsAnEntireRow(int[] moves, int n)
     {
-        if (n == 3)
-        {
-            return new Game(n).State(moves);
-        }
-
-        var options = new WinnerPatternsGenerator().Generate(n);
-        var won = options.Any(x => x.IsSubsetOf(moves.Where((_, i) => i % 2 == 0).ToHashSet()));
-        Assert.That(won);
-        return GameState.CrossWon;
+        return new Game(n, new WinnerPatternsGenerator()).State(moves);
     }
 
     [TestCase(new[] { 0, 1, 3, 2, 6 }, ExpectedResult = GameState.CrossWon)]
