@@ -40,6 +40,12 @@ public class TheGame
         return new Game().State(moves);
     }
 
+    [TestCase(new[] { 0, 6, 8, 7, 4 }, ExpectedResult = GameState.CrossWon)]
+    public GameState InformsThatCurrentPlayerWinsIfThisPlayerFillsOneOfTwoDiagonals(int[] moves)
+    {
+        return new Game().State(moves);
+    }
+
     [TestCase(new[] { 0, 1, 2, 4, 3, 5, 8, 6, 7 }, ExpectedResult = GameState.Tied)]
     [TestCase(new[] { 0, 2, 1, 3, 4, 7, 5, 8, 6 }, ExpectedResult = GameState.Tied)]
     public GameState InformsThatGameIsTiedWhenAllSpotsAreFilledAndNoPlayerHasWon(int[] moves)
@@ -51,9 +57,6 @@ public class TheGame
     [TestCase(new[] { 0, 3, 1, 4, 2, 5 })]
     public void ThrowErrorWhenMoreThanOneWayToWinAreSpotted(int[] moves)
     {
-        Assert.Throws<GameInInvalidState>(() =>
-        {
-            new Game().State(moves);
-        });
+        Assert.Throws<GameInInvalidState>(() => { new Game().State(moves); });
     }
 }
