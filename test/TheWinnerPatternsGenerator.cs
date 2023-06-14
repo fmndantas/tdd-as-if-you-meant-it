@@ -1,3 +1,5 @@
+using src;
+
 namespace test;
 
 public class TheWinnerPatternsGenerator
