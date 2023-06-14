@@ -56,10 +56,17 @@ public class TheGame
         return new Game(3, new WinnerPatternsGenerator()).State(moves);
     }
 
-    [TestCase(new[] { 0, 1, 3, 4, 6, 7 })]
-    [TestCase(new[] { 0, 3, 1, 4, 2, 5 })]
-    public void ThrowErrorWhenMoreThanOneWayToWinAreSpotted(int[] moves)
+    [TestCase(new[] { 0, 1, 3, 4, 6, 7 }, 3)]
+    [TestCase(new[] { 0, 3, 1, 4, 2, 5 }, 3)]
+    [TestCase(new[] { 0, 3, 1, 4, 2, 5 }, 3)]
+    public void ThrowErrorWhenMoreThanOneWayToWinAreSpotted(int[] moves, int n)
     {
-        Assert.Throws<GameInInvalidState>(() => { new Game(3, new WinnerPatternsGenerator()).State(moves); });
+        Assert.Throws<GameInInvalidState>(() => { new Game(n, new WinnerPatternsGenerator()).State(moves); });
+    }
+
+    [TestCase(new[] { 0, 4, 5, 8, 10, 12, 15, 1 }, 4)]
+    public void ThrowErrorWhenThereIsOneWayToWinAndThisWayPertainsToLastPlayer(int[] moves, int n)
+    {
+        Assert.Throws<GameInInvalidState>(() => { new Game(n, new WinnerPatternsGenerator()).State(moves); });
     }
 }

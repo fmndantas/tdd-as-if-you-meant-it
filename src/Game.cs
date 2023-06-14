@@ -21,6 +21,11 @@ public class Game
             throw new GameInInvalidState("There are more than one way to win the game");
         }
 
+        if (currentPlayerWinningPositions == 1)
+        {
+            throw new GameInInvalidState("Current player alredy won the game");
+        }
+        
         if (lastPlayerWinningPositions == 1)
         {
             return parity == 0 ? GameState.CircleWon : GameState.CrossWon;
