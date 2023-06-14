@@ -4,7 +4,7 @@ public class Game
 {
     private readonly List<HashSet<int>> _options;
 
-    public Game()
+    public Game(int n)
     {
         _options = new List<HashSet<int>>
         {
