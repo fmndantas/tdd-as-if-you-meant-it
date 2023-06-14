@@ -49,11 +49,12 @@ public class TheGame
         return new Game(3, new WinnerPatternsGenerator()).State(moves);
     }
 
-    [TestCase(new[] { 0, 1, 2, 4, 3, 5, 8, 6, 7 }, ExpectedResult = GameState.Tied)]
-    [TestCase(new[] { 0, 2, 1, 3, 4, 7, 5, 8, 6 }, ExpectedResult = GameState.Tied)]
-    public GameState InformsThatGameIsTiedWhenAllSpotsAreFilledAndNoPlayerHasWon(int[] moves)
+    [TestCase(new[] { 0, 1, 2, 4, 3, 5, 8, 6, 7 }, 3, ExpectedResult = GameState.Tied)]
+    [TestCase(new[] { 0, 2, 1, 3, 4, 7, 5, 8, 6 }, 3, ExpectedResult = GameState.Tied)]
+    [TestCase(new[] { 0, 1, 2, 3, 5, 4, 7, 6, 10, 9, 11, 8, 12, 13, 14, 15 }, 4, ExpectedResult = GameState.Tied)]
+    public GameState InformsThatGameIsTiedWhenAllSpotsAreFilledAndNoPlayerHasWon(int[] moves, int n)
     {
-        return new Game(3, new WinnerPatternsGenerator()).State(moves);
+        return new Game(n, new WinnerPatternsGenerator()).State(moves);
     }
 
     [TestCase(new[] { 0, 1, 3, 4, 6, 7 }, 3)]
@@ -65,7 +66,7 @@ public class TheGame
     }
 
     [TestCase(new[] { 0, 4, 5, 8, 10, 12, 15, 1 }, 4)]
-    public void ThrowErrorWhenThereIsOneWayToWinAndThisWayPertainsToLastPlayer(int[] moves, int n)
+    public void ThrowErrorWhenThereIsOneWayToWinAndThisWayPertainsToTheCurrentPlayer(int[] moves, int n)
     {
         Assert.Throws<GameInInvalidState>(() => { new Game(n, new WinnerPatternsGenerator()).State(moves); });
     }
